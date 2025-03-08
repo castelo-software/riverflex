@@ -1,0 +1,22 @@
+name: riverflex-backend
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pip=24.3.1
+  - pip:
+      - python-dotenv
+      - pydantic
+      - fastapi[standard]
+      - python-multipart
+      - uvicorn
+      - pandas
+      - langchain
+      - langchain-chroma
+      - langchain-openai
+      - langchain-community
+      - langgraph
+      - langchain-openai-api-bridge
+#      - autogen-agentchat
+#      - autogen-ext[openai]

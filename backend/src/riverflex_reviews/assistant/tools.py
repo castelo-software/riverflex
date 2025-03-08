@@ -1,3 +1,8 @@
+"""
+This module contains tools that can be used by the agents in the Riverflex Reviews assistant. Currently, the only tool
+available is the search_reviews tool, which searches through reviews for a given query. Additional tools can be added
+here to extend the functionality of the assistant.
+"""
 import json
 
 from langchain_core.tools import tool

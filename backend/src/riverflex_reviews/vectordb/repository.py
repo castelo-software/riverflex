@@ -11,12 +11,8 @@ from riverflex_reviews.vectordb.entity import Review
 @singleton
 class ReviewRepository:
     """
-
-    Potential improvements:
-    - Chroma DB should be deployed as a service using a separate container. Here we should use the Chroma HTTP client to
-        interact with the service, rather than persisting the data locally.
-    - We should add logic to split the reviews into smaller chunks before adding to the Chroma DB.
-    - It should be possible to update existing documents in the Chroma DB.
+    This repository provides an interface to the 'reviews' collection in the vector database. It makes it possible for
+    the application to manage the data stored in the collection and search through it.
     """
     def __init__(self):
         self.client = Chroma(
@@ -29,8 +25,20 @@ class ReviewRepository:
         )
 
     def add(self, reviews: List[Review]) -> None:
+        """
+        Add reviews to the repository.
+
+        :param List[Review] reviews: List of reviews to add.
+        """
         self.client.add_documents([r.to_document() for r in reviews])
 
     def search(self, query: str, k: int = 10) -> List[Review]:
+        """
+        Search for reviews based on a query string.
+
+        :param str query: The query string to search for.
+        :param int k: Number of results to return.
+        :return: List of reviews whose content is most similar to the query.
+        """
         results = self.client.similarity_search(query, k=k)
         return [Review.from_document(d) for d in results]
