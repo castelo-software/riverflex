@@ -6,6 +6,10 @@ type MessageAreaProps = {
   messages: UIMessage[];
 };
 
+/**
+ * Component that displays a list of messages in the chat. The list of messages must be passed as a prop to this
+ * component.
+ */
 const MessageArea = (props: MessageAreaProps) => {
   const { messages } = props;
   return (
