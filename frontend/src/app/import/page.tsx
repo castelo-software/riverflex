@@ -2,6 +2,16 @@
 
 import { useState } from "react";
 
+/**
+ * This page allows the user to upload a CSV file containing product reviews, which will be used by the assistant to
+ * provide its answers.
+ *
+ * This page contains a very simply form with a single file input. For this reason, we don't need to use a form library
+ * like React Hook Form, and we can manage the form state with React's built-in state management.
+ *
+ * Note that we could have used a server action to handle the file upload, but we decided to use a route handler instead
+ * since we are already using a route handler for the chat endpoint.
+ */
 const ImportPage = () => {
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
