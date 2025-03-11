@@ -35,7 +35,7 @@ const ChatInput = (props: ChatInputProps) => {
           name="prompt"
           value={input}
           onChange={handleInputChange}
-          className="textarea textarea-bordered shadow-2xl w-full min-h-[24px] max-h-[calc(75dvh)] overflow-hidden resize-none rounded-2xl pb-10"
+          className="textarea textarea-bordered shadow-2xl w-full min-h-[24px] max-h-[calc(75dvh)] overflow-hidden resize-none rounded-2xl pb-10 focus:outline-none"
           placeholder="Type your message..."
           onKeyDown={(event) => {
             if (

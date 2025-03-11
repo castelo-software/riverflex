@@ -31,6 +31,8 @@ class ReviewRepository:
         :param List[Review] reviews: List of reviews to add.
         """
         self.client.add_documents([r.to_document() for r in reviews])
+        print(f"Added {len(reviews)} reviews to the vector database.")
+        print(f"Current collection size: {len(self.client.get(include=[])['ids'])}")
 
     def search(self, query: str, k: int = 10) -> List[Review]:
         """

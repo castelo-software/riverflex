@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Suspense } from "react";
 import Image from "next/image";
+import Navbar from "@/components/navbar";
 
 export const metadata: Metadata = {
   title: "Reviews AI",
@@ -33,18 +34,7 @@ export default function RootLayout({
         {/* A Navbar is suspended on top of the layout. If this component would become complex, it should be moved
         into a dedicated file. */}
         <Suspense>
-          <div className="navbar backdrop-blur-md bg-neutral-100/80">
-            <div className="flex-1">
-              <a className="btn btn-ghost">
-                <Image
-                  src="/logo.svg"
-                  alt="Riverflex"
-                  width={145}
-                  height={23}
-                />
-              </a>
-            </div>
-          </div>
+          <Navbar />
         </Suspense>
 
         {/* The content of the page itself is shown here. We remove 4rem from the total height, since that's the 

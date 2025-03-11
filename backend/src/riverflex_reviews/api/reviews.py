@@ -5,7 +5,8 @@ import csv
 import io
 from typing import List
 
-from fastapi import UploadFile, APIRouter
+from fastapi import UploadFile, APIRouter, HTTPException, status
+
 from pydantic import BaseModel
 
 from riverflex_reviews.vectordb.entity import Review
@@ -34,17 +35,28 @@ async def upload_reviews(file: UploadFile):
     :param UploadFile file: The CSV file containing reviews.
     """
     content = await file.read()
-    ReviewRepository().add([
-        Review(
-            reviewer_id=row['reviewerID'],
-            asin=row['asin'],
-            summary=row['summary'],
-            review_text=row['reviewText'],
-            overall_rating=float(row['overall']),
-            unix_timestamp=int(row['unixReviewTime']),
+    try:
+        reader = csv.DictReader(io.StringIO(content.decode('utf-8')))
+        required_columns = {'reviewerID', 'asin', 'summary', 'reviewText', 'overall', 'unixReviewTime'}
+        if not required_columns.issubset(reader.fieldnames):
+            raise ValueError("Missing required columns")
+        reviews =[
+            Review(
+                reviewer_id=row['reviewerID'],
+                asin=row['asin'],
+                summary=row['summary'],
+                review_text=row['reviewText'],
+                overall_rating=float(row['overall']),
+                unix_timestamp=int(row['unixReviewTime']),
+            )
+            for row in reader
+        ]
+        ReviewRepository().add(reviews)
+    except ValueError as e:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"Invalid file format: {str(e)}"
         )
-        for row in csv.DictReader(io.StringIO(content.decode('utf-8')))
-    ])
 
 
 @router.get(

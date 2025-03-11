@@ -19,7 +19,7 @@ const MessageBubble = (props: MessageBubbleProps) => {
       className={`chat ${message.role === "user" ? "chat-end" : "chat-start"}`}
     >
       <div
-        className={`chat-bubble shadow-xl ${
+        className={`chat-bubble shadow-xl rounded-2xl ${
           message.role === "user"
             ? "chat-bubble-primary"
             : "chat-bubble-neutral bg-neutral-900"
