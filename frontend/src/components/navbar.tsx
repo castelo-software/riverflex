@@ -5,9 +5,9 @@ const Navbar = () => {
   return (
     <div className="navbar backdrop-blur-md bg-neutral-100/80">
       <div className="flex-1">
-        <a className="btn btn-ghost">
+        <Link className="btn btn-ghost" href="/">
           <Image src="/logo.svg" alt="Riverflex" width={145} height={23} />
-        </a>
+        </Link>
       </div>
       <div className="flex-none">
         <ul className="menu menu-horizontal px-1">
