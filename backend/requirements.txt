@@ -1,0 +1,12 @@
+python-dotenv
+pydantic
+fastapi[standard]
+python-multipart
+uvicorn
+pandas
+langchain
+langchain-chroma
+langchain-openai
+langchain-community
+langgraph
+langchain-openai-api-bridge

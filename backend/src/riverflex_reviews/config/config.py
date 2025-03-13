@@ -19,6 +19,6 @@ class Config:
 
         # Configuration for the vector database.
         # This requires an embeddings model (and an OpenAI API key to access it) to be able to vectorize text data.
-        self.CHROMADB_PATH = getenv('CHROMADB_PATH', './chroma_data')
+        self.CHROMADB_PATH = getenv('CHROMADB_PATH', './chroma.db')
         self.OPENAI_API_KEY = getenv('OPENAI_API_KEY')
         self.EMBEDDING_FUNCTION = getenv('EMBEDDING_FUNCTION', 'text-embedding-3-small')
